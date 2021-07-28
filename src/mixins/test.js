@@ -1,19 +1,17 @@
-
-
 export default {
   data: {
-    mixin: 'MixinText'
+    mixin: 'MixinText',
   },
   methods: {
-    mixintap () {
+    mixintap() {
       this.mixin = 'MixinText' + (Math.random() + '').substring(3, 7);
       console.log('mixin method tap');
     },
-    tap () {
+    tap() {
       console.log('tap in mixin');
-    }
+    },
   },
-  created () {
+  created() {
     console.log('created in mixin');
-  }
-}
+  },
+};
