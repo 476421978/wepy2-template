@@ -16,9 +16,12 @@
   "author": "huangligen <476421978@qq.com>",
   "license": "MIT",
   "dependencies": {
-    "@wepy/x": "^2.0.2",
     "@wepy/core": "^2.0.0-alpha.16",
-    "miniprogram-slide-view": "0.0.3"
+    "@wepy/use-promisify": "^2.1.0",
+    "@wepy/x": "^2.0.2",
+    "axios": "^0.21.1",
+    "miniprogram-slide-view": "0.0.3",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
