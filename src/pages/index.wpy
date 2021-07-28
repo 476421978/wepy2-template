@@ -4,11 +4,19 @@
 </template>
 <script>
 import wepy from '@wepy/core'
+import API from '@/api/index'
 wepy.page({
   data: {},
   computed: {},
-  methods: {},
-  created() {}
+  methods: {
+    async getUserInfo() {
+      const res = await API.GetUserInfo()
+      console.log('res-->>>', res)
+    }
+  },
+  created() {
+    this.getUserInfo()
+  }
 })
 </script>
 <config>
