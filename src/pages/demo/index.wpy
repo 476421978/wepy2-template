@@ -142,10 +142,10 @@ module.exports.getTime = getTime;
 
 <script>
 import wepy from '@wepy/core'
-import eventHub from '../common/eventHub'
+import eventHub from '../../common/eventHub'
 import { mapState } from '@wepy/x'
-import store from '../store'
-import testMixin from '../mixins/test'
+import store from '../../store'
+import testMixin from '../../mixins/test'
 
 wepy.page({
   store,
@@ -258,8 +258,9 @@ wepy.page({
       console.log('do noting from ' + this.$is)
     },
     communicate() {
-      let counters = this.$children.filter((com) => com.$is === 'components/counter')
-
+      console.log('communicate-->>>' + this.$is)
+      let counters = this.$children.filter((com) => com.$is === 'components/demo/counter')
+      console.log('counters-->>', counters)
       // Get children counter
       counters[0].num++
       counters[1].num--

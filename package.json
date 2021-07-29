@@ -11,7 +11,7 @@
   },
   "wepy": {
     "module-a": false,
-    "./src/components/list": "./src/components/wepy-list.wpy"
+    "./src/components/list": "./src/components/demo/wepy-list.wpy"
   },
   "author": "huangligen <476421978@qq.com>",
   "license": "MIT",

@@ -1,3 +1,6 @@
+/**
+ * 逻辑计算方法
+ */
 export default {
   data: {
     mixin: 'MixinText'

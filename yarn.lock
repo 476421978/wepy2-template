@@ -946,6 +946,11 @@
   dependencies:
     miniprogram-api-typings "^2.10.3-1"
 
+"@wepy/use-promisify@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.nlark.com/@wepy/use-promisify/download/@wepy/use-promisify-2.1.0.tgz#a6b9781082802d977de620ee760a5ab3a228b60a"
+  integrity sha1-prl4EIKALZd95iDudgpas6Iotgo=
+
 "@wepy/x@^2.0.2":
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/@wepy/x/download/@wepy/x-2.1.0.tgz#d7a0d61f6db096ce0cf6b83143dd5fa3a328c7b3"
@@ -1163,13 +1168,6 @@ aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.nlark.com/aws4/download/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha1-1h9G2DslGSUOJ4Ta9bCUeai0HFk=
-
-axios@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.nlark.com/axios/download/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
-  integrity sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
-  dependencies:
-    follow-redirects "^1.10.0"
 
 babel-code-frame@^6.16.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -2535,11 +2533,6 @@ flatten@^1.0.2:
   version "1.0.3"
   resolved "https://registry.nlark.com/flatten/download/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha1-wSg6yfJ7Noq8HjbR/3sEUBowNWs=
-
-follow-redirects@^1.10.0:
-  version "1.14.1"
-  resolved "https://registry.nlark.com/follow-redirects/download/follow-redirects-1.14.1.tgz?cache=0&sync_timestamp=1620555300559&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.14.1.tgz#d9114ded0a1cfdd334e164e6662ad02bfd91ff43"
-  integrity sha1-2RFN7Qoc/dM04WTmZirQK/2R/0M=
 
 forever-agent@~0.6.1:
   version "0.6.1"
