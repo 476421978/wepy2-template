@@ -11,7 +11,6 @@ wepy.page({
   methods: {
     async getUserInfo() {
       const res = await API.GetUserInfo()
-      console.log('res-->>>', res)
     }
   },
   created() {
