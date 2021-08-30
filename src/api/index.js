@@ -6,6 +6,7 @@ const CONFIG = {
 const BASEURL = CONFIG.host + '/' + CONFIG.path
 
 const POST = async (path, data) => {
+  let errTips = '网络连接失败'
   wepy.wx.showLoading({ title: '努力请求中' })
   try {
     const response = await wepy.wx.request({
@@ -27,9 +28,9 @@ const POST = async (path, data) => {
     if (code === 403) {
       throw '无权限访问'
     }
-    // 服务器出错
-    if (code >= 500 && code < 600) {
-      throw '请求服务器异常'
+    // 传参数 HTTP 状态码
+    if (code === 400) {
+      throw '参数错误'
     }
     // 开发者服务器返回的 HTTP 状态码
     if (response.statusCode !== 200) {
@@ -46,9 +47,12 @@ const POST = async (path, data) => {
     }
     return response.data.result
   } catch (error) {
+    if (typeof error === 'string') errTips = error
+    if (error && error.errMsg) errTips = error.errMsg
+    if (errTips === 'request:fail') errTips = '请求接口失败'
     setTimeout(() => {
       wepy.wx.showToast({
-        title: error,
+        title: errTips,
         icon: 'none',
         duration: 1500
       })

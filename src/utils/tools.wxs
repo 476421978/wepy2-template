@@ -19,6 +19,18 @@ var FormatTime = function (_date_) {
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+// 获取当前时间
+const GetTime = function (time) {
+  let date = getDate(time || Date())
+  let hour = date.getHours()
+  let mins = date.getMinutes()
+  let sec = date.getSeconds()
+  let milli = date.getMilliseconds()
+  return `${hour}:${mins}:${sec}.${milli}`
+}
+
+
 module.exports = {
-  FormatTime: FormatTime
+  FormatTime: FormatTime,
+  GetTime: GetTime
 }

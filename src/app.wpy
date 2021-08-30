@@ -54,7 +54,6 @@ wepy.app({
 <config>
 {
     pages: [
-      'pages/demo/index',
       'pages/index'
     ],
     window: {
