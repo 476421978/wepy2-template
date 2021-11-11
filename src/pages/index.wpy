@@ -36,12 +36,26 @@ wepy.page({
         // 新版本下载失败
         this.commonToast('新版本下载失败')
       })
+    },
+    // 拉取本地用户信息 重新保存store
+    async reloadUserInfo() {
+      const res = await API.GetWxUserInfo({})
+    },
+    init() {
+      // 跳转页面 配置的tabBar不能redirectTo跳转
+      if (this.options) {
+        wepy.wx.switchTab({ url: `/pages/home?Obj=${JSON.stringify(this.options)}` })
+      } else {
+        wepy.wx.switchTab({ url: `/pages/home` })
+      }
     }
   },
   async onLoad(options) {
     // 版本更新
     this.versionUpdate()
     // 有加载本地数据
+    this.reloadUserInfo()
+    // 配置信息
     // 二维码参数
     if (options.q) {
       let qsStr = unescape(options.q)
@@ -51,10 +65,7 @@ wepy.page({
     } else {
       this.options = this.decodeParams(options)
     }
-  },
-  created() {
-    // 跳转页面
-    wepy.wx.redirectTo({ url: '/pages/home' })
+    this.init()
   }
 })
 </script>

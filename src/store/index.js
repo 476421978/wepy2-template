@@ -2,33 +2,36 @@ import Vuex from '@wepy/x'
 
 export default new Vuex.Store({
   state: {
-    counter: 0
+    UserInfo: {}, // 用户信息
+    MinaInfo: {}, // 小程序信息
+    cornerMark: undefined // 角标
   },
-  // 必须同步执行 专注于修改State
   mutations: {
-    increment(state) {
-      state.counter++
+    saveUserInfo(state, val) {
+      state.UserInfo = val
     },
-    decrement(state) {
-      state.counter--
+    saveMinaInfo(state, val) {
+      state.MinaInfo = val
+    },
+    saveCornerMark(state, val) {
+      state.cornerMark = val
+    },
+    cleanUserInfo(state) {
+      state.UserInfo = {}
     }
   },
-  //  专注返回state
-  getters: {
-    counter: (state) => state.counter
-  },
-  // 可以异步 业务代码、异步请求，触发mutations
   actions: {
-    increment({ commit }) {
-      commit('increment')
+    storeSaveUserInfo({ commit }, val) {
+      commit('saveUserInfo', val)
     },
-    decrement({ commit }) {
-      commit('decrement')
+    storeSaveMinaInfo({ commit }, val) {
+      commit('saveMinaInfo', val)
     },
-    incrementAsync({ commit }) {
-      setTimeout(() => {
-        commit('increment')
-      }, 1000)
+    storeSaveCornerMark({ commit }, val) {
+      commit('saveCornerMark', val)
+    },
+    storeCleanUserInfo({ commit }) {
+      commit('cleanUserInfo')
     }
   }
 })

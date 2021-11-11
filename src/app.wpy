@@ -1,12 +1,5 @@
 <style lang="less">
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
+@import './assets/stylesheets/base.less';
 </style>
 
 <script>
@@ -54,13 +47,24 @@ wepy.app({
 <config>
 {
     pages: [
-      'pages/index'
+      'pages/index',
+      'pages/home',
+      'pages/mine'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      list: [{
+        pagePath: 'pages/home',
+        text: '首页'
+      }, {
+        pagePath: 'pages/mine',
+        text: '我的'
+      }]
     }
 }
 </config>

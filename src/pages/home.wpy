@@ -1,9 +1,87 @@
 <template>
-  <div>首页</div>
+  <div>
+    <div>首页</div>
+    <button @click="onGetMinaInfo">获取静态数据</button>
+    <button @click="onRefreshToken">刷新Token</button>
+
+    <br /><br />
+    <div>
+      <!-- 查询 -->
+      <input type="text" placeholder="请输入待查询手机号" v-model="searchTxt" />
+      <!-- 表单列表 -->
+      <div class="order-list" v-for="(item, index) in orderList" :key="index">
+        <div class="item">
+          <image :src="item.chat_head" mode="scaleToFill" lazy-load="false" />
+          <text>{{ item.nick_name }}</text>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
+<config>
+{
+  navigationBarTitleText: '首页',
+  usingComponents: {
+  }
+}
+</config>
 <script>
-export default {}
+import wepy from '@wepy/core'
+import API from '@/api'
+wepy.page({
+  data: {
+    searchTxt: '',
+    timer: false,
+    // 列表
+    orderList: [],
+    totalCount: 0,
+    pagesSize: 1,
+    pagesNum: 10
+  },
+  watch: {
+    searchTxt() {
+      // clearTimeout(this.timer)
+      // this.timer = setTimeout(function () {
+      //   this.getOrderList()
+      // }, 1000)
+    }
+  },
+  methods: {
+    async onGetMinaInfo() {
+      const res = await API.GetMinaInfo()
+    },
+    async onRefreshToken() {
+      const res = await API.RefreshToken()
+    },
+    // 获取用户列表
+    async getOrderList() {
+      const res = await API.GetUserList({
+        pages_size: this.pagesSize,
+        pages_num: this.pagesNum,
+        search_txt: this.searchTxt || undefined
+      })
+      if (!res) return
+      this.totalCount = res.count
+      this.orderList = res.rows
+    }
+  },
+  onLoad() {
+    this.getOrderList()
+  }
+})
 </script>
 
-<style></style>
+<style lang="less">
+.order-list {
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    image {
+      width: 100rpx;
+      height: 100rpx;
+    }
+  }
+}
+</style>

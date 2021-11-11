@@ -7,10 +7,10 @@ import API from '@/api'
 import store from '@/store'
 export default {
   methods: {
-     // 解密手机号
+    // 解密手机号
     async comAuthUserPhone(e) {
       const l = await this.comAuthLogin()
-      const res = await this.comAuthDecUserInfo(l.code, e.$wx.detail.encryptedData, e.$wx.detail.iv, 'Phone')
+      return this.comAuthDecUserInfo(l.code, e.$wx.detail.encryptedData, e.$wx.detail.iv, 'Phone')
     },
     // 登录
     async comAuthLogin() {
