@@ -1,0 +1,78 @@
+<style lang="less"></style>
+<template>
+  <div class="container">过渡页</div>
+</template>
+<script>
+import wepy from '@wepy/core'
+import store from '../store'
+import commonMixins from '../mixins/common'
+import comStoreMixins from '../mixins/comStore'
+import API from '@/api'
+import qs from 'qs'
+wepy.page({
+  store,
+  mixins: [commonMixins, comStoreMixins],
+  data: {
+    options: null
+  },
+  computed: {},
+  methods: {
+    // 更新版本
+    versionUpdate() {
+      const updateManager = wx.getUpdateManager()
+      updateManager.onCheckForUpdate(function (res) {
+        // 请求完新版本信息的回调
+        if (res.hasUpdate) this.commonToast('有新版本')
+      })
+      updateManager.onUpdateReady(async () => {
+        const res = await wepy.wx.showModal({
+          title: '更新提示',
+          content: '新版本已经准备好，是否重启应用？'
+        })
+        // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+        if (res.confirm) updateManager.applyUpdate()
+      })
+      updateManager.onUpdateFailed(function () {
+        // 新版本下载失败
+        this.commonToast('新版本下载失败')
+      })
+    },
+    // 拉取本地用户信息 重新保存store
+    async reloadUserInfo() {
+      const res = await API.GetWxUserInfo({})
+    },
+    init() {
+      // 跳转页面 配置的tabBar不能redirectTo跳转
+      if (this.options) {
+        wepy.wx.switchTab({ url: `/pages/home?Obj=${JSON.stringify(this.options)}` })
+      } else {
+        wepy.wx.switchTab({ url: `/pages/home` })
+      }
+    }
+  },
+  async onLoad(options) {
+    // 版本更新
+    this.versionUpdate()
+    // 有加载本地数据
+    this.reloadUserInfo()
+    // 配置信息
+    // 二维码参数
+    if (options.q) {
+      let qsStr = unescape(options.q)
+      qsStr = qsStr.split('?')[1]
+      const obj = qs.parse(qsStr)
+      this.options = obj
+    } else {
+      this.options = this.decodeParams(options)
+    }
+    this.init()
+  }
+})
+</script>
+<config>
+{
+  navigationBarTitleText: '过渡页',
+  usingComponents: {
+  }
+}
+</config>
